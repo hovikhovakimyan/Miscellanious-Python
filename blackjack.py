@@ -55,7 +55,8 @@ print(f"Dealer is showing: {dealers_hand[0].rank}")
 print(f"Your hand is {[str(card) for card in players_hand]} for a total of {player_total}")
 if player_total==21:
     state = 'blackjack' if dealer_total!=21 else 'double_blackjack'
-    
+if dealer_total==21 and state=='In Play':
+    state = 'dealer_blackjack'
 while state == 'In Play':
     action = ''
     #players turn
@@ -98,6 +99,8 @@ elif state == 'blackjack':
     print("Congrats you win with a blackjack")
 elif state == 'double_blackjack':
     print("Unlucky double blackjack, push")
+elif state == 'dealer_blackjack':
+    print("Dealer has blackjack, you lose")
 elif state == 'dealer_done':
     if(player_total>dealer_total):
         print("You win")
